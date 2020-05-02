@@ -14,12 +14,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Start container and verify it's working
-          command: docker-compose up --build
-
-    steps:
-      - checkout
-      - run:
           name: Run unit tests
           command: echo 'running tests here'
 

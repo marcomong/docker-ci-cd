@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  ui:
+    container_name: ui
+    restart: always
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+      target: prod
+    volumes:
+      - ./ui:/app:delegated
+      - /app/node_modules
+    ports:
+      - '8080:8080'
+      - '80:80'
+
+  # backend:
+  #   container_name: backend
+  #   restart: always
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #     target: prod
+  #   volumes:
+  #     - ./backend:/app:delegated
+  #     - /app/node_modules
+  #   ports:
+  #     - '8081:8081'

@@ -1,3 +1,0 @@
-sut:
-  build: ./backend
-  command: echo "Docker running test"

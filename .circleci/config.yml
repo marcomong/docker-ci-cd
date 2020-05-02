@@ -4,6 +4,11 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
+
+    environment:
+      NODE_ENV: production
+      TARGET: prod
+
     steps:
       - checkout
       - setup_remote_docker

@@ -33,3 +33,11 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
       
+      - deploy:
+          name: Build and push Docker image
+          command: |
+            TAG="0.1.${CIRCLE_BUILD_NUM}"
+            docker-compose --build
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+            docker-compose push
+  

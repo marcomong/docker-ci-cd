@@ -9,7 +9,7 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile
-      target: prod
+      target: ${TARGET}
     volumes:
       - ./ui:/app:delegated
       - /app/node_modules
@@ -24,7 +24,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-      target: prod
+      target: ${TARGET}
     volumes:
       - ./backend:/app:delegated
       - /app/node_modules

@@ -35,13 +35,12 @@ jobs:
       
       - run:
           name: Build service
-          command: make
+          command: docker-compose --build
       
       - deploy:
           name: Build and push Docker image
           command: |
             TAG="0.1.${CIRCLE_BUILD_NUM}"
-            docker-compose --build
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
             docker-compose push
   

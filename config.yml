@@ -7,8 +7,8 @@ jobs:
     working_directory: ~/repo
     
     environment:
-      NODE_ENV: development
-      TARGET: dev
+      NODE_ENV: production
+      TARGET: prod
 
     steps:
       - checkout

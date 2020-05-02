@@ -5,7 +5,7 @@ services:
   # ui:
   #   container_name: ui
   #   restart: always
-  #   image: ${REGISTRY_HOST}/dockertest-pipeline-ui:latest
+  #   image: ${REGISTRY_HOST}/dockertest-pipeline-ui:test
   #   build:
   #     context: ./ui
   #     dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
   backend:
     container_name: backend
     restart: always
-    image: ${REGISTRY_HOST}/dockertest-pipeline-backend:latest
+    image: ${REGISTRY_HOST}/dockertest-pipeline-backend:test
     build:
       context: ./backend
       dockerfile: Dockerfile

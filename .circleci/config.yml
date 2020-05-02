@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:11.10.1
+      - image: circleci/node:9.4.0
 
     working_directory: ~/repo
     
@@ -12,36 +12,43 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Run unit tests
-          command: echo 'running tests here'
-
-      # - run:
-      #     name: Install Docker client
-      #     command: |
-      #       set -x
-      #       VER="17.03.0-ce"
-      #       curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-      #       tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-      #       mv /tmp/docker/* /usr/bin
-        
-      # This should go into custom primary image, here's only for the sake of explanation
-      - run:
-          name: Install Docker Compose
-          command: |
-            set -x
-            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
-      
+      - setup_remote_docker
       - run:
           name: Start container and verify it's working
-          command: |
-            set -x
-            docker-compose up -d
+          command: docker-compose up --build
+
+    # steps:
+    #   - checkout
+    #   - run:
+    #       name: Run unit tests
+    #       command: echo 'running tests here'
+
+    #   # - run:
+    #   #     name: Install Docker client
+    #   #     command: |
+    #   #       set -x
+    #   #       VER="17.03.0-ce"
+    #   #       curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+    #   #       tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+    #   #       mv /tmp/docker/* /usr/bin
+        
+    #   # This should go into custom primary image, here's only for the sake of explanation
+    #   - run:
+    #       name: Install Docker Compose
+    #       command: |
+    #         set -x
+    #         curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    #         chmod +x /usr/local/bin/docker-compose
       
-      - deploy:
-          name: Build and push Docker image
-          command: |
-            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker-compose push
+    #   - run:
+    #       name: Start container and verify it's working
+    #       command: |
+    #         set -x
+    #         docker-compose up -d
+      
+    #   - deploy:
+    #       name: Build and push Docker image
+    #       command: |
+    #         docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    #         docker-compose push
   

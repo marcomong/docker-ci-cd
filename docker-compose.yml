@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.0'
 
 services:
 
@@ -9,7 +9,6 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile
-      target: test
     volumes:
       - ./ui:/app:delegated
       - /app/node_modules

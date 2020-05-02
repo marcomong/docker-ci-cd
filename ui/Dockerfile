@@ -21,13 +21,20 @@ EXPOSE 8080
 # start app
 CMD ["npm", "run", "serve"]
 
-
+### DEVELOPMENT
+### dev
+FROM base as test
+WORKDIR /app
+RUN npm install
+RUN npm install @vue/cli@3.7.0 -g
+# start app
+CMD ["npm", "run", "test:unit"]
 
 
 
 # build environment
 FROM base as build
-RUN npm install --silent
+RUN npm install --silent --only=production
 RUN npm install @vue/cli@3.7.0 -g
 COPY . /app
 RUN npm run build

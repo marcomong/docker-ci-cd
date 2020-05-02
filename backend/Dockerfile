@@ -24,6 +24,17 @@ WORKDIR /app
 RUN npm install --only=development
 CMD ["nodemon", "./app.js", "--inspect=0.0.0.0:9929"]
 
+FROM base as test
+# Node env
+ENV NODE_ENV=development
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+# set working directory
+WORKDIR /app
+# don't need to copy the cose because we are binding it
+RUN npm install --only=development
+CMD ["npm", "run", "test"]
+
 
 #########
 #PROD

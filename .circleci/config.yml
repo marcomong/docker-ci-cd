@@ -26,7 +26,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
         
         # This should go into custom primary image, here's only for the sake of explanation
-        - run:
+      - run:
           name: Install Docker Compose
           command: |
             set -x

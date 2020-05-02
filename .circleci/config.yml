@@ -51,7 +51,7 @@ jobs:
       - run:
           name: create containers
           command: |
-            docker-compose up --build
+            docker-compose build
       - deploy:
           name: Push application Docker image
           command: |

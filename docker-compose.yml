@@ -2,19 +2,22 @@ version: '3.0'
 
 services:
 
-  # ui:
-  #   container_name: ui
-  #   restart: always
-  #   image: ${REGISTRY_HOST}/dockertest-pipeline-ui:test
-  #   build:
-  #     context: ./ui
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./ui:/app:delegated
-  #     - /app/node_modules
-  #   ports:
-  #     - '8080:8080'
-  #     - '80:80'
+  ui:
+    container_name: ui
+    restart: always
+    image: ${REGISTRY_HOST}/dockertest-pipeline-ui:test
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    volumes:
+      - ./ui:/app:delegated
+      - /app/node_modules
+    ports:
+      - '8080:8080'
+      - '80:80'
+    expose:
+      - 8080
+      - 80
 
   backend:
     container_name: backend
@@ -28,3 +31,5 @@ services:
       - /app/node_modules
     ports:
       - '8081:8081'
+    expose:
+      - 8081
